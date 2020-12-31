@@ -75,15 +75,8 @@ BitBarWebpackProgressPlugin.prototype.apply = function(compiler) {
       compilation.hooks.beforeChunkAssets.tap(pluginName, () =>
         handler(0.76, "create chunk assets")
       );
-      compilation.hooks.additionalChunkAssets.tap(pluginName, () =>
-        handler(0.78, "additional chunk assets")
-      );
-      compilation.hooks.optimizeChunkAssets.tapAsync(
-        pluginName,
-        (chunks, callback) => {
-          handler(0.8, "optimize chunk assets");
-          callback();
-        }
+      compilation.hooks.processAssets.tap(pluginName, () =>
+        handler(0.80, "process assets")
       );
       compilation.hooks.optimizeAssets.tapAsync(
         pluginName,
